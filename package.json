@@ -1,0 +1,34 @@
+{
+  "name": "ray-serve",
+  "version": "0.7.0",
+  "description": "A server development library for ray-net and ray-userland. ExpressJS based.",
+  "main": "ray-serve.js",
+  "scripts": {
+    "test": "node tests.js",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ray6464/ray-serve.git"
+  },
+  "keywords": [
+    "server",
+    "expressjs",
+    "ray-userland",
+    "ray",
+    "rayvoice",
+    "anna",
+    "annavoice"
+  ],
+  "author": "Ray Voice, Anna Voice",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ray6464/ray-serve/issues"
+  },
+  "homepage": "https://github.com/Ray6464/ray-serve#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ray-fs": "^1.2.0",
+    "ray-taken": "^1.0.3"
+  }
+}

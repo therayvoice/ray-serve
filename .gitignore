@@ -1,3 +1,10 @@
+# Uglified
+ray-serve.min.js
+
+# Tests
+tests.js
+tests
+
 # Logs
 logs
 *.log
