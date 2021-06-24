@@ -1,6 +1,5 @@
 "use strict"
 const express = require('express');
-const app = express();
 const dns = require('dns');
 const os = require('os');
 const path = require('path');
@@ -8,7 +7,7 @@ const fs = require('ray-fs');
 const taken = require('ray-taken');
 const core = require('ray-core');
 const rayserveAuthors = "Ray Voice and Anna Voice";
-const rayserveVersion = "v1.0.0"
+const rayserveVersion = "v1.0.1"
 
 module.exports = {
   app: express(),
