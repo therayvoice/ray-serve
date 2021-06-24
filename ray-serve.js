@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const fs = require('ray-fs');
 const taken = require('ray-taken');
+const core = require('ray-core');
 const rayserveAuthors = "Ray Voice and Anna Voice";
 
 module.exports = {
@@ -10,24 +11,22 @@ module.exports = {
   port: 4040,
   latency: 0,
   hostname: "localhost",
-  serveJSON: function (myNode, myJSON) {
-    const node = taken.take(arguments).getStrArgs().value[0]; 
+  showPort: (hostname, port)=>{
+     console.log(`Server is listening at ${hostname}:${port}`);
+   },
+  serveJSON: function () {
+    const node = taken.take(arguments).getNodeNames().value[0]; 
     const json = taken.take(arguments).getObjArgs().value[0]; 
-    this.app.get(node, (req, res) => {
-      setTimeout(()=>{
-        res.send(json);
-      }, this.latency);
-    });
+
+    if (node === undefined) {core.lastWords("NodeName invalid! (/home, /about)")}
+
+    this.app.get(node, (req, res) => {core.sendJSON(res, json, this.latency)});
     return this;
   },
-  serveFile: function(node, fileURL, fileDirArg) {
-    const fileDir = __dirname;
-    if (fileDirArg !== undefined) fileDir = fileDirArg;
-    this.app.get(node, (req, res) => {
-      setTimeout(()=>{
-        res.sendFile(`${fileDir}/${fileURL}`);
-      }, this.latency);
-    });
+  serveFile: function(node, file, fileDirArg) {
+    const fileDir = core.argAssign(fileDirArg, __dirname);
+    const fileURL = `${fileDir}/${file}`;
+    this.app.get(node, (req, res) => {core.sendFile(res, fileURL, this.latency)});
     return this;
   },
   showRoot: function(serverName, versionName) {
@@ -35,10 +34,7 @@ module.exports = {
     return this;
   },
   listen: function(callback) {
-   let methodUsed = callback;
-   if (methodUsed === undefined) methodUsed = () => {
-     console.log(`Server is listening at ${this.hostname}:${this.port}`);
-   }
+   let methodUsed = core.argAssign(callback, ()=>{this.showPort(this.hostname, this.port)});
    this.app.listen(this.port, methodUsed);
   }
 }

@@ -28,7 +28,8 @@
   "homepage": "https://github.com/Ray6464/ray-serve#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "ray-core": "^0.0.7",
     "ray-fs": "^1.2.0",
-    "ray-taken": "^1.0.3"
+    "ray-taken": "^1.0.5"
   }
 }
