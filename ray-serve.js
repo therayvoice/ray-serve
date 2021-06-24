@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const dns = require('dns');
 const os = require('os');
+const path = require('path');
 const fs = require('ray-fs');
 const taken = require('ray-taken');
 const core = require('ray-core');
@@ -25,9 +26,12 @@ module.exports = {
     this.app.get(node, (req, res) => {core.sendJSON(res, json, this.latency)});
     return this;
   },
-  serveFile: function(node, file, fileDirArg) {
+  serveFile: function() {
+    const node = taken.take(arguments).getNodeNames().value[0]; 
+    const file = taken.take(arguments).getFileNames().value[0]; 
+    const fileDirArg = taken.take(arguments).getDirNames().value[0] || __dirname;
     const fileDir = core.argAssign(fileDirArg, __dirname);
-    const fileURL = `${fileDir}/${file}`;
+    const fileURL = path.join(__dirname, fileDir,file); // __dirname may need to be process.cwd()
     this.app.get(node, (req, res) => {core.sendFile(res, fileURL, this.latency)});
     return this;
   },
