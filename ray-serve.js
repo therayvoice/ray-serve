@@ -1,6 +1,8 @@
 "use strict"
 const express = require('express');
 const app = express();
+const dns = require('dns');
+const os = require('os');
 const fs = require('ray-fs');
 const taken = require('ray-taken');
 const core = require('ray-core');
@@ -36,6 +38,10 @@ module.exports = {
   listen: function(callback) {
    let methodUsed = core.argAssign(callback, ()=>{this.showPort(this.hostname, this.port)});
    this.app.listen(this.port, methodUsed);
+  },
+  getIPV4: function(callback) {
+    dns.lookup(os.hostname(), (err, add, fam) => {callback(err,add,fam)});
+    return this;
   }
 }
 
