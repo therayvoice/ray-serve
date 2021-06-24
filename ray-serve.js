@@ -8,6 +8,7 @@ const fs = require('ray-fs');
 const taken = require('ray-taken');
 const core = require('ray-core');
 const rayserveAuthors = "Ray Voice and Anna Voice";
+const rayserveVersion = "v1.0.0"
 
 module.exports = {
   app: express(),
