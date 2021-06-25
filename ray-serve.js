@@ -1,13 +1,14 @@
 "use strict"
+"use strict"
 const express = require('express');
 const dns = require('dns');
 const os = require('os');
-const path = require('path');
+//const path = require('path');
 const fs = require('ray-fs');
 const taken = require('ray-taken');
 const core = require('ray-core');
 const rayserveAuthors = "Ray Voice and Anna Voice";
-const rayserveVersion = "v1.0.1"
+const rayserveVersion = "v2.0.0";
 
 module.exports = {
   value: 0,
@@ -15,10 +16,6 @@ module.exports = {
   port: 4040,
   latency: 0,
   hostname: "localhost",
-  dirName: function() {
-    this.value = "node_modules/ray-serve/";
-    return this;
-  },
   showPort: (hostname, port)=>{
      console.log(`Server is listening at ${hostname}:${port}`);
    },
@@ -32,12 +29,9 @@ module.exports = {
     return this;
   },
   serveFile: function() {
-    const node = taken.take(arguments).getNodeNames().value[0]; 
-    const file = taken.take(arguments).getFileNames().value[0]; 
-    const fileDirArg = taken.take(arguments).getDirNames().value[0] || __dirname;
-    const fileDir = core.argAssign(fileDirArg, __dirname);
-    const fileURL = path.join(__dirname, fileDir,file); // __dirname may need to be process.cwd()
-    this.app.get(node, (req, res) => {core.sendFile(res, fileURL, this.latency)});
+    const file = taken.take(arguments).getAbsPaths().value[0]; 
+    const node = taken.take(arguments).getNodeNames().value[1]; 
+    this.app.get(node, (req, res) => {core.sendFile(res, file, this.latency)});
     return this;
   },
   showRoot: function(serverName, versionName) {

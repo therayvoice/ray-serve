@@ -1,8 +1,8 @@
 {
   "name": "ray-serve",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "A server development library for ray-net and ray-userland. ExpressJS based!",
-  "main": "ray-serve.js",
+  "main": "ray-serve.min.js",
   "scripts": {
     "test": "node tests.js",
     "start": "node ."
@@ -30,6 +30,6 @@
     "express": "^4.17.1",
     "ray-core": "^0.0.7",
     "ray-fs": "^1.2.0",
-    "ray-taken": "^1.2.0"
+    "ray-taken": "^2.0.0"
   }
 }
