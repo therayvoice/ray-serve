@@ -10,10 +10,15 @@ const rayserveAuthors = "Ray Voice and Anna Voice";
 const rayserveVersion = "v1.0.1"
 
 module.exports = {
+  value: 0,
   app: express(),
   port: 4040,
   latency: 0,
   hostname: "localhost",
+  dirName: function() {
+    this.value = "node_modules/ray-serve/";
+    return this;
+  },
   showPort: (hostname, port)=>{
      console.log(`Server is listening at ${hostname}:${port}`);
    },
