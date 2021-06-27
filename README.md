@@ -1,5 +1,11 @@
 # ray-serve
-[![MIT License](https://img.shields.io/apm/atom|c-design-ui.svg)]
+![NPM](https://img.shields.io/npm/l/ray-serve)
+![npm](https://img.shields.io/npm/v/ray-serve)
+![GitHub repo size](https://img.shields.io/github/repo-size/ray6464/ray-serve)
+![GitHub last commit](https://img.shields.io/github/last-commit/ray6464/ray-serve)
+![Twitter Follow](https://img.shields.io/twitter/follow/rayshorthead?style=social)
+![ray-userland](https://img.shields.io/badge/ray%20userland-ray%20net-220713)
+
 A server development library for ray-net and ray-userland. Based on ExpressJS!
 
 
