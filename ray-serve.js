@@ -3,12 +3,11 @@
 const express = require('express');
 const dns = require('dns');
 const os = require('os');
-//const path = require('path');
 const fs = require('ray-fs');
 const taken = require('ray-taken');
 const core = require('ray-core');
 const rayserveAuthors = "Ray Voice and Anna Voice";
-const rayserveVersion = "v2.1.0";
+const rayserveVersion = "v2.1.1";
 
 module.exports = {
   value: 0,
@@ -16,12 +15,6 @@ module.exports = {
   port: 4040,
   latency: 0,
   hostname: "localhost",
-  logDirNames: function() {
-    // for path diagnostics
-    console.log(__dirname, "ray-serve.js __dirname");
-    console.log(process.cwd(), "ray-serve.js process.cwd()");
-    return this;
-  },
   showPort: (hostname, port)=>{
      console.log(`Server is listening at ${hostname}:${port}`);
    },
@@ -34,9 +27,7 @@ module.exports = {
     this.app.get(node, (req, res) => {core.sendJSON(res, json, this.latency)});
     return this;
   },
-  serveFile: function() {
-    const file = taken.take(arguments).getAbsPaths().value[0]; 
-    const node = taken.take(arguments).getNodeNames().value[1]; 
+  serveFile: function(node, file) {
     this.app.get(node, (req, res) => {core.sendFile(res, file, this.latency)});
     return this;
   },

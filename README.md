@@ -1,5 +1,7 @@
 # ray-serve
+[![MIT License](https://img.shields.io/apm/atom|c-design-ui.svg)]
 A server development library for ray-net and ray-userland. Based on ExpressJS!
+
 
 # Installation
 To install ray-serve as a dependency for your project use:
@@ -16,7 +18,7 @@ serve
   .getIPV4((err,add,fam)=>{ console.log(`hostname ${add}`) })
   .showRoot("Bright Org", "v1.2.4")
   .serveJSON({name: "bella", age: 15}, "/dusk")
-  .serveFile("anyfile", "/dawn", "../anyDirectory/")
+  .serveFile("/dawn", "any/where/anyFile.xyz")
   .listen();
 
 ```
@@ -35,7 +37,7 @@ serve
 
 7. `.serveJSON(object, /node)`: This method shows the provided object at the given node. For example, `192.168.1.109:4040/node`. The node name always begins with a "/" (forward slash). The order of arguments dosen't affect the method thanks to the `ray-taken` library.
 
-8. `.serveFile(fileName, fileDirectory/, /node)`: This methods sends the provided file from the given directory (relative to the __dirname) to the assigned /node. The order of the arguments dosen't affect the method thanks to the `ray-taken` library. The /node name always begins with "/". The dirName/ always ends with "/". The file name must not have any "/".
+8. `.serveFile(/node, fileName)`: This methods sends the provided file from the given directory (relative to the __dirname) to the assigned /node.
 
 9. `.listen(callback)`: This method is used to listen at the configured port, and the provided callback is called. If no callback is given then a default callback is executed which just logs the hostanme and port.
 
