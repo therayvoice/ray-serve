@@ -47,7 +47,9 @@ serve
 
 9. `.listen(callback)`: This method is used to listen at the configured port, and the provided callback is called. If no callback is given then a default callback is executed which just logs the hostanme and port.
 
-10. More stuff comming soon!
+10. `.static(directoryURI)`: This method serves all the files in the provided directory address at the /fileName.fileExt nodes. For example, in the root directory of your project a directory named "public" has a file named "mock.json", when `serve.static('./public')` is used that file can be seen at `localhost:4000/mock.json`.
+
+11. More stuff comming soon!
 
 # LICENSE
 

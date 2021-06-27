@@ -7,12 +7,12 @@ const fs = require('ray-fs');
 const taken = require('ray-taken');
 const core = require('ray-core');
 const rayserveAuthors = "Ray Voice and Anna Voice";
-const rayserveVersion = "v2.1.1";
+const rayserveVersion = "v2.2.1";
 
 module.exports = {
   value: 0,
   app: express(),
-  port: 4040,
+  port: 4000,
   latency: 0,
   hostname: "localhost",
   showPort: (hostname, port)=>{
@@ -41,6 +41,10 @@ module.exports = {
   },
   getIPV4: function(callback) {
     dns.lookup(os.hostname(), (err, add, fam) => {callback(err,add,fam)});
+    return this;
+  },
+  static: function(dir) {
+    this.app.use(express.static(dir));
     return this;
   }
 }
