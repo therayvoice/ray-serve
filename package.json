@@ -1,6 +1,6 @@
 {
   "name": "ray-serve",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "A server development library for ray-net and ray-userland. ExpressJS based!",
   "main": "ray-serve.min.js",
   "scripts": {
@@ -28,7 +28,7 @@
   "homepage": "https://github.com/Ray6464/ray-serve#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "ray-core": "^0.0.7",
+    "ray-core": "^0.1.0",
     "ray-fs": "^1.2.0",
     "ray-taken": "^2.0.0"
   }
