@@ -6,7 +6,7 @@ const fs = require('ray-fs');
 const taken = require('ray-taken');
 const core = require('ray-core');
 const rayserveAuthors = "Ray Voice and Anna Voice";
-const rayserveVersion = "v2.2.2";
+const rayserveVersion = "v2.2.3";
 
 module.exports = {
   value: 0,
@@ -27,14 +27,18 @@ module.exports = {
     if (node === undefined) {core.lastWords("NodeName invalid! (/home, /about)")}
 
     this.app.get(node, (req, res) => {
-//      if (callbackCoreSend !== undefined) core.sendJSON(res, json, this.latency, callbackCoreSend);
-//      else core.sendJSON(res, json, this.latency, callbackCoreSend)
       core.sendJSON(res, json, this.latency, callbackCoreSend);
     });
     return this;
   },
   serveFile: function(node, file) {
-    this.app.get(node, (req, res) => {core.sendFile(res, file, this.latency)});
+    const callbackServeSend = taken.take(arguments).getFuncArgs().value[0]; 
+    const callbackCoreSend = taken.take(arguments).getFuncArgs().value[1];
+    core.funcAnime(callbackServeSend);
+
+    this.app.get(node, (req, res) => {
+      core.sendFile(res, file, this.latency, callbackCoreSend)
+    });
     return this;
   },
   showRoot: function(serverName, versionName) {

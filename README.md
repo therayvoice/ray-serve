@@ -41,9 +41,13 @@ serve
 
 6. `.showRoot(softwareName, versionName)`: This methods shows a JSON object at the root "/" node with props showing the value of `softwareName` and `versionName` arguments.
 
-7. `.serveJSON(object, /node)`: This method shows the provided object at the given node. For example, `192.168.1.109:4040/node`. The node name always begins with a "/" (forward slash). The order of arguments dosen't affect the method thanks to the `ray-taken` library.
+7. `.serveJSON(object, /node, serveCallback, coreCallback)`: This method shows the provided object at the given node. For example, `192.168.1.109:4040/node`. The node name always begins with a "/" (forward slash). The order of arguments dosen't affect the method thanks to the `ray-taken` library.
 
-8. `.serveFile(/node, fileName)`: This methods sends the provided file from the given directory (relative to the __dirname) to the assigned /node.
+> NOTE: The callback arguments are optional, but must be provided in order. These arguments are functions that will execute inside the server module itself which has to do with code without latency, and the core module which executes after the latency period passes, before sending the data over.
+
+8. `.serveFile(/node, fileName, serveCallback, CoreCallback)`: This methods sends the provided file from the given directory (relative to the __dirname) to the assigned /node.
+
+> NOTE: The callback arguments are optional, but must be provided in order. These arguments are functions that will execute inside the server module itself which has to do with code without latency, and the core module which executes after the latency period passes, before sending the data over.
 
 9. `.listen(callback)`: This method is used to listen at the configured port, and the provided callback is called. If no callback is given then a default callback is executed which just logs the hostanme and port.
 

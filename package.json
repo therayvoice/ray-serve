@@ -1,6 +1,6 @@
 {
   "name": "ray-serve",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "A server development library for ray-net and ray-userland. ExpressJS based!",
   "main": "ray-serve.min.js",
   "scripts": {
